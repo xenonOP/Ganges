@@ -168,7 +168,7 @@
                                     <div class="d-block d-md-flex">
                                         <div class="icon"><span><img src="images/icons/flaticon-shopping-cart-white.svg" alt="" onclick="crtee()"></span><span
                                                 class="badge"></span></div>
-                                        <div class="details"><p class="subtitle">$200.99</p><h5 class="title">Total</h5></div>
+                                        <div class="details"><p class="subtitle" id="totr">cart</p><h5 class="title">Total</h5></div>
                                     </div>
                                 </a>
                             </li>
@@ -668,16 +668,15 @@
                                                 ans += "<p>" + obj.prdname + "</p>";
                                                 ans += "<div class=\"cart_btn home_page_sidebar mt10\">";
                                                 ans += "<div class=\"quantity-block home_page_sidebar\">";
-                                                ans += "<button class=\"quantity-arrow-minus home_page_sidebar\"><img src=\"images/icons/minus.svg\" alt=\"\" onclick=\"decrSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\" ></button>";
+                                                ans += "<button class=\"quantity-arrow-minus home_page_sidebar\" onclick=\"decrCartSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\"><img src=\"images/icons/minus.svg\" alt=\"\"  ></button>";
                                                 ans += "<input class=\"quantity-num home_page_sidebar\" type=\"number\" value=\"" + obj.quant + "\" id=\"id" + i + "\" />";
-                                                ans += "<button class=\"quantity-arrow-plus home_page_sidebar\"><img src=\"images/icons/minus.svg\" alt=\"\" onclick=\"incrSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\></button>";
+                                                ans += "<button class=\"quantity-arrow-plus home_page_sidebar\" onclick=\"incrCartSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\"><img src=\"images/icons/plus.svg\" alt=\"\" ></button>";
                                                 ans += "</div>";
-                                                ans += "<span class=\"home_page_sidebar price\"  id=\"ofp" + i + "\">" + obj.ofprice + "</span></div>";
                                                 ans += "<span class=\"home_page_sidebar price\"  id=\"idd" + i + "\">" + obj.ofPrice * obj.quant + "</span></div>";
-                                                ans += "<span class=\"close_icon\"><i class=\"flaticon-close\" onclick=\"delCartSide( " + obj.prdid + ")\"></i></span></div>";
+                                                ans += "<span class=\"close_icon\"><i class=\"flaticon-close\" onclick=\"delCartSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\"></i></span></div>";
                                                 ans += "</li>";
                                             }
-                                            document.getElementById("crte").innerHTML = ans;
+                                            document.getElementById("crte").innerHTML = ans;totalrate();
                                         }
                                     };
                                     xhr.open("GET", "./CartLoading?user=" + user, true);
@@ -685,7 +684,7 @@
                                 }
                                 ;
 
-                                function incrSide(ofp, edf, tpp, pid)
+                                function incrCartSide(ofp, edf, tpp, pid)
                                 {
                                     let tp = parseInt(document.getElementById(ofp).innerHTML);
                                     let cart = parseInt(document.getElementById(edf).value);
@@ -693,9 +692,10 @@
                                     let Total = (cart * tp);
                                     document.getElementById(tpp).innerHTML = Total.toLocaleString("en-US");
                                     document.getElementById(edf).value = cart;
-                                    fun(edf, tpp, pid, ofp);
+                                    fun(edf, tpp, pid, ofp);totalrate();
+                                    location.reload();
                                 }
-                                function decrSide(ofp, edf, tpp, pid)
+                                function decrCartSide(ofp, edf, tpp, pid)
                                 {
                                     let cart = parseInt(document.getElementById(edf).value);
                                     let tp = parseInt(document.getElementById(ofp).innerHTML);
@@ -706,7 +706,8 @@
                                     document.getElementById(edf).value = cart;
                                     let Total = (cart * tp);
                                     document.getElementById(tpp).innerHTML = Total.toLocaleString("en-US");
-                                    fun(edf, tpp, pid, ofp);
+                                    fun(edf, tpp, pid, ofp);totalrate();
+                                    location.reload();
                                 }
                                 function funSide(edf, mn, pid, ofp)
                                 {
@@ -716,20 +717,21 @@
                                     let url = "./changeQuant?pid=" + pid + "&quant=" + val + "&tp=" + Price;
                                     fetch(url).then(data => data.text()).then(resp => {
                                         document.getElementById(mn).innerHTML = resp.trim();
-
+                                        totalrate();
                                     });
                                 }
-                                function delCartSide(pid)
+                                function delCartSide(ofp, edf, tpp, pid)
                                 {
                                     let xhr = new XMLHttpRequest();
                                     xhr.onreadystatechange = function ()
                                     {
-                                        if (this.readyState == 4 && this.status == 200)
+                                        if (this.readyState === 4 && this.status === 200)
                                         {
                                             let resp = this.responseText.trim();
-                                            if (resp == "success")
+                                            if (resp === "success")
                                             {
-                                                crt();
+                                                fun(edf, tpp, pid, ofp);
+                                                crt();totalrate();
                                             } else
                                             {
                                                 alert("error occured");
@@ -738,8 +740,45 @@
                                     };
                                     xhr.open("GET", "./DelCart?pid=" + pid, true);
                                     xhr.send();
+                                    
                                 }
                             </script>     
+                            <script>
+                                        let Trate= 0;
+                                     function totalrate()
+                                    {
+                                        let user = '<%=UserName%>';
+                                        let xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function ()
+                                        {
+                                            if (this.readyState == 4 && this.status == 200)
+                                            {
+                                                let resp = this.responseText;
+                                                let mainobj = JSON.parse(resp);
+                                                let arr = mainobj.ans;
+                                                let ttol= 0;
+                                                let paise = 0;
+                                                for (let i = 0; i < arr.length; i++)
+                                                {
+                                                    let obj = arr[i];
+                                                    paise = parseInt(paise)+parseInt(obj.total);
+                                                    ttol = parseInt(ttol)+parseInt(obj.Price);
+                                                }
+                                                document.getElementById("totr").innerHTML="&#8377;"+ttol.toLocaleString();
+                                                Trate = ttol;
+                                            }
+                                        };
+                                        xhr.open("GET", "./CartTotal?user=" + user, true);
+                                        xhr.send();
+                                    }
+                
+                
+                function chkpage()
+                {
+                    let usrx = '<%=UserName%>';
+                    window.location.href = "Checkout.jsp?total="+Trate+"&user="+usrx;
+                }
+            </script>
                     </li>
                 </ul>
             </div>
@@ -747,14 +786,16 @@
     </div>
     <div class="hsidebar_footer_content">
         <div class="list_last_content">
-            <div class="lc"><p class="para">Buy $98.00 more to enjoy FREE Shipping</p>
+            <div class="lc">
                 <div class="uilayout_range home1_style">
-                    <div class="sidebar_range_slider mb30 mt25"><input class="range-example-km" value="80" type="text"></div>
+                    
                 </div>
-                <a href="#" class="cart_btns btn btn-white">View Cart</a><a href="#" class="checkout_btns btn btn-thm">Checkout</a>
+               <%String std = (String)session.getAttribute("user");%>
+                <a href="Cart.jsp?&user=<%=std%>" class="cart_btns btn btn-white">View Cart</a><a href="#" class="checkout_btns btn btn-thm" onclick="chkpage()">Checkout</a>
             </div>
         </div>
     </div>
+            
 </div>
 <script>
     function CheckEmail() {

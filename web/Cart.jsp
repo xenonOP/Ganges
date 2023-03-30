@@ -74,7 +74,6 @@
                                     <tbody class="table_body" id="tdy1">
                                     <script>
                                         <%
-                                         int pid = Integer.parseInt(request.getParameter("pid"));
                                          String usr3 = request.getParameter("user"); 
                                         %>
                                         function crt()
@@ -212,7 +211,7 @@
                                             <script> function gifg() {
                                                     window.location.href = "MainPage.jsp"
                                                 }</script>
-                                            <button type="button" class="btn btn_cart btn3 btn-thm">Update Cart</button>
+                                            <button type="button" class="btn btn_cart btn3 btn-thm" onclick="upd()">Update Cart</button>
                                             <button type="button" class="btn btn_cart btn3 btn-thm">RENT IT</button>
                                         </form>
                                     </div>
@@ -223,6 +222,10 @@
                             <div class="order_sidebar_widget style2">
                                 <h4 class="title">Cart Totals</h4>
                                 <script>
+                                    function upd()
+                                    {
+                                        location.reload();
+                                    }
                                     window.setInterval(sided(), 5000);
                                     let tal= 0;
                                      function sided()

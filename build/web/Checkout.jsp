@@ -43,8 +43,11 @@
                                     <h4 class="title mb20">Billing details</h4>
                                     <div class="checkout_coupon ui_kit_button">
                                         <script>
+                                           
                                             function order()
                                             {
+                                                
+
                                                 let FN = document.getElementById("FN").value;
                                                 let LN = document.getElementById("LN").value;
                                                 let country = document.getElementById("SelCo").value;
@@ -54,6 +57,7 @@
                                                 let zip = document.getElementById("zip").value;
                                                 let phn = document.getElementById("phn").value;
                                                 let email = document.getElementById("email").value;
+
                                                 if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
                                                 {
                                                     alert("fill completely");
@@ -78,6 +82,7 @@
                                                     ord.append("zip", zip);
                                                     ord.append("phn", phn);
                                                     ord.append("email", email);
+                                                    
                                                     xhr.open("GET", "./", true);
                                                     xhr.send(ord);
                                                 }
@@ -240,8 +245,7 @@
                                 <div class="payment_method">
                                     <div class="ui_kit_radiobox pm_content bb1">
                                         <div class="radio mb10">
-                                            <input id="radio_one" name="radio" type="radio" checked="">
-                                            <label class="pmtitle" for="radio_one"><span class="radio-label"></span> Direct bank transfer</label>
+                                            <label class="pmtitle" for="radio_one" style="padding-left: 0px"><h4 style="font-size: 25px">Choose Payment Option</h4></label>
                                         </div>
                                         <div class="pm_details">
                                             <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
@@ -249,66 +253,102 @@
                                     </div>
                                     <div class="ui_kit_radiobox pm_content bb1">
                                         <div class="radio mb10">
-                                            <input id="radio_one2" name="radio" type="radio">
-                                            <label class="pmtitle" for="radio_one2"><span class="radio-label"></span> Online Payment</label>
+                                            <input id="radio_one2" name="radioPAY" type="radio" id="onpay" value="ONLINE" onclick="tts()">
+                                            <label class="pmtitle" for="radio_one2"><span class="radio-label" id="ccd"></span> Online Payment</label>
                                         </div>
                                     </div>
                                     <div class="ui_kit_radiobox pm_content">
                                         <div class="radio mb10">
-                                            <input id="radio_one3" name="radio" type="radio" onclick="cod()">
-                                            <label class="pmtitle" for="radio_one3"><span class="radio-label"></span> Cash on Delivery</label>
+                                            <input id="radio_one3" name="radioPAY" type="radio" id="cod" value="COD" onclick="tts()">
+                                            <label class="pmtitle" for="radio_one3" id="ccc"><span class="radio-label" ></span> Cash on Delivery</label>
                                         </div>
                                     </div>
-                                </div>
-                                                    <script>
-                                                        
-                                                        function cod()
-                                                        {
-                                                            let user='<%=user%>';
-                                                            let total = <%=total%>;
-                                                            alert(total);alert(user);
-                                                let FN = document.getElementById("FN1").value;
-                                                alert(FN);
-                                                let LN = document.getElementById("LN").value;
-                                                let country = document.getElementById("SelCo").value;
-                                                let addr = document.getElementById("StAdd").value;
-                                                let city = document.getElementById("city").value;
-                                                let state = document.getElementById("State").value;
-                                                let zip = document.getElementById("zip").value;
-                                                let phn = document.getElementById("phn121").value;
-                                                let email = document.getElementById("em121").value;
-                                                if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
-                                                {
-                                                    alert("fill completely");
-                                                } else
-                                                {
-                                                    let xhr = new XMLHttpRequest();
-                                                    xhr.onreadystatechange = function ()
-                                                    {
-                                                        if (this.readyState == 4 && this.status == 200)
-                                                        {
-                                                            let resp = this.responseText;
-                                                            alert(resp);
-                                                            alert("hogya");
+                                </div> 
+                                <script>
+                                     let payMent="khaali";
+                                    function tts()
+                                    {
+                                        
+                                        var paytype = document.getElementsByName('radioPAY');
+                                                for (var i = 0; i < paytype.length; i++) {
+                                                    paytype[i].addEventListener('click', function () {
+                                                        var selectedColor = this.value;
+
+                                                        // Loop through all labels and set their styles
+                                                        var labels = document.getElementsByTagName('label');
+                                                        for (var j = 0; j < labels.length; j++) {
+                                                            labels[j].style.color = 'black';
+                                                            labels[j].style.fontWeight = 'normal';
                                                         }
-                                                    };
-                                                    let ord = new FormData();
-                                                    ord.append("FN", document.getElementById("FN1").value);
-                                                    ord.append("LN", document.getElementById("LN").value);
-                                                    ord.append("country", document.getElementById("SelCo").value);
-                                                    ord.append("addr", document.getElementById("StAdd").value);
-                                                    ord.append("city", document.getElementById("city").value);
-                                                    ord.append("state", document.getElementById("State").value);
-                                                    ord.append("zip", document.getElementById("zip").value);
-                                                    ord.append("phn", document.getElementById("phn121").value);
-                                                    ord.append("total", total);
-                                                    ord.append("email", document.getElementById("em121").value);
-                                                    ord.append("user",  user);
-                                                    xhr.open("POST", "./Payment", true);
-                                                    xhr.send(ord);
+
+                                                        // Get the label element associated with the selected radio button
+                                                        var label = document.querySelector('label[for="' + this.id + '"]');
+
+                                                        // Set the styles of the selected label
+                                                        label.style.color = 'black';
+                                                        label.style.fontWeight = 'bold';
+
+                                                        // Call different functions based on the selected color
+                                                        if (selectedColor === 'ONLINE') {
+                                                           payMent="ONLINE";
+                                                        } else if (selectedColor === 'COD') {
+                                                           payMent = "COD";
+                                                        } 
+                                                    });
                                                 }
-                                                        }
-                                                        </script>
+                                        
+                                       
+                                    }
+                                    function cod()
+                                    {
+                                        let user = '<%=user%>';
+                                        let total = <%=total%>;
+                                        let FN = document.getElementById("FN1").value;
+                                        alert(FN);
+                                        let LN = document.getElementById("LN").value;
+                                        let country = document.getElementById("SelCo").value;
+                                        let addr = document.getElementById("StAdd").value;
+                                        let city = document.getElementById("city").value;
+                                        let state = document.getElementById("State").value;
+                                        let zip = document.getElementById("zip").value;
+                                        let phn = document.getElementById("phn121").value;
+                                        let email = document.getElementById("em121").value;
+                                        if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
+                                        {
+                                            alert("fill completely");
+                                        }
+                                        else
+                                        {
+                                            let xhr = new XMLHttpRequest();
+                                            xhr.onreadystatechange = function ()
+                                            {
+                                                if (this.readyState == 4 && this.status == 200)
+                                                {
+                                                    let resp = this.responseText.trim();
+                                                    if(resp=="success")
+                                                    {
+                                                        window.location.href="INVOICE.jsp";
+                                                    }
+                                                }
+                                            };
+                                            let ord = new FormData();
+                                            ord.append("FN", document.getElementById("FN1").value);
+                                            ord.append("LN", document.getElementById("LN").value);
+                                            ord.append("country", document.getElementById("SelCo").value);
+                                            ord.append("addr", document.getElementById("StAdd").value);
+                                            ord.append("city", document.getElementById("city").value);
+                                            ord.append("state", document.getElementById("State").value);
+                                            ord.append("zip", document.getElementById("zip").value);
+                                            ord.append("phn", document.getElementById("phn121").value);
+                                            ord.append("total", total);
+                                            ord.append("email", document.getElementById("em121").value);
+                                            ord.append("pay", payMent);
+                                            ord.append("user", user);
+                                            xhr.open("POST", "./Payment", true);
+                                            xhr.send(ord);
+                                        }
+                                    }
+                                </script>
                                 <div class="ui_kit_checkbox checkout_pm">
                                     <label class="custom_checkbox">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
                                         <input type="checkbox">
@@ -316,7 +356,7 @@
                                     </label>
                                 </div>
                                 <div class="ui_kit_button payment_widget_btn">
-                                    <button type="button" class="btn btn-thm btn-block mb0" onclick="order()">Place Order</button>
+                                    <button type="button" class="btn btn-thm btn-block mb0" onclick="cod()">Place Order</button>
                                 </div>
                             </div>
                         </div>

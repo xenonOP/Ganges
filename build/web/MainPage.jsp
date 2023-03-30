@@ -228,7 +228,7 @@
                                                                 {
                                                                     if(this.responseText.trim()=="success")
                                                                     {
-                                                                        window.location.href = "Cart.jsp?pid=" + pid+"&user="+user;
+                                                                        window.location.href = "Cart.jsp?user="+user;
                                                                     }
                                                                     else
                                                                     {
