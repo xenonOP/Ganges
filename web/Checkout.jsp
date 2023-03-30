@@ -153,19 +153,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Phone *</label>
-                                                        <input name="form_phone" class="form-control form_control" type="number" id="phn">
+                                                        <input name="form_phone" class="form-control form_control" type="number" id="phn121">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Your Email</label>
-                                                        <input name="form_email" class="form-control form_control email" type="email" id="email">
+                                                        <input name="form_email" class="form-control form_control email" type="email" id="em121">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <div class="form-group mb0">
                                                         <label class="ai_title">Order notes (optional)</label>
-                                                        <textarea name="form_message" class="form-control" rows="12" placeholder="">Order Notes</textarea>
+                                                        <textarea name="form_message" class="form-control" rows="7" placeholder="">Order Notes</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@
                                                     for(let i =0; i<arr.length; i++)
                                                     {
                                                         let obj = arr[i];
-                                                        ans+="<li class=\"pb0\"><p class=\"product_name_qnt\">"+obj.pname+" </p><span class=\"price\">"+obj.TotalPrice+"</span></li>";
+                                                        ans+="<li class=\"pb0\"><p class=\"product_name_qnt\">"+decodeURIComponent(obj.pname)+" </p><span class=\"price\">"+obj.TotalPrice+"</span></li>";
                                                     }
                                                     ans+="<li class=\"subtitle\"><p>Sub Total <span class=\"float-end totals\">&#8377;<%=total%></span></p></li>"; 
                                                     ans+="<li class=\"subtitle\"><p>Shipping <span class=\"float-end totals\">&#8377;0.0</span></p></li>";
@@ -201,9 +201,6 @@
                                             }
                                         
                                         </script>
-                                        <li class="subtitle"><p>Sub Total <span class="float-end totals">&#8377;<%=total%></span></p></li>
-                                        
-                                        
                                     </ul>
                                 </div>
                                 <div class="ui_kit_checkbox checkout_pm">
