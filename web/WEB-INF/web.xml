@@ -108,6 +108,10 @@
         <servlet-name>Order</servlet-name>
         <servlet-class>Order</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Payment</servlet-name>
+        <servlet-class>Payment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>Order</servlet-name>
         <url-pattern>/Order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Payment</servlet-name>
+        <url-pattern>/Payment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

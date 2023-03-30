@@ -43,53 +43,52 @@
                                     <h4 class="title mb20">Billing details</h4>
                                     <div class="checkout_coupon ui_kit_button">
                                         <script>
-                                        function order()
-                                        {
-                                            let FN = document.getElementById("FN").value;
-                                            let LN = document.getElementById("LN").value;
-                                            let country = document.getElementById("SelCo").value;
-                                            let addr = document.getElementById("StAdd").value;
-                                            let city = document.getElementById("city").value;
-                                            let state = document.getElementById("State").value;
-                                            let zip = document.getElementById("zip").value;
-                                            let phn = document.getElementById("phn").value;
-                                            let email = document.getElementById("email").value;
-                                            if(FN===""||LN===""||country===""||addr===""||city===""||state===""||zip===""||phn===""||email==="")
+                                            function order()
                                             {
-                                                   alert("fill completely");
-                                            }
-                                            else
-                                            {
-                                                let xhr = new XMLHttpRequest();
-                                                xhr.onreadystatechange= function()
+                                                let FN = document.getElementById("FN").value;
+                                                let LN = document.getElementById("LN").value;
+                                                let country = document.getElementById("SelCo").value;
+                                                let addr = document.getElementById("StAdd").value;
+                                                let city = document.getElementById("city").value;
+                                                let state = document.getElementById("State").value;
+                                                let zip = document.getElementById("zip").value;
+                                                let phn = document.getElementById("phn").value;
+                                                let email = document.getElementById("email").value;
+                                                if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
                                                 {
-                                                    if(this.readyState==4&&this.status==200)
+                                                    alert("fill completely");
+                                                } else
+                                                {
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.onreadystatechange = function ()
                                                     {
-                                                        let resp = this.responseText;
-                                                        
-                                                    }
-                                                };
-                                                let ord = new FormData();
-                                                ord.append("FN", FN);
-                                                ord.append("LN", LN);
-                                                ord.append("country", country);
-                                                ord.append("addr", addr);
-                                                ord.append("city", city);
-                                                ord.append("state", state);
-                                                ord.append("zip", zip);
-                                                ord.append("phn", phn);
-                                                ord.append("email", email);
-                                                xhr.open("GET", "./" ,true);
-                                                xhr.send(ord);
+                                                        if (this.readyState == 4 && this.status == 200)
+                                                        {
+                                                            let resp = this.responseText;
+
+                                                        }
+                                                    };
+                                                    let ord = new FormData();
+                                                    ord.append("FN", FN);
+                                                    ord.append("LN", LN);
+                                                    ord.append("country", country);
+                                                    ord.append("addr", addr);
+                                                    ord.append("city", city);
+                                                    ord.append("state", state);
+                                                    ord.append("zip", zip);
+                                                    ord.append("phn", phn);
+                                                    ord.append("email", email);
+                                                    xhr.open("GET", "./", true);
+                                                    xhr.send(ord);
+                                                }
                                             }
-                                        }
                                         </script>
                                         <form class="form2" id="coupon_form" name="contact_form" action="#" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="form-label">First name *</label>
-                                                        <input class="form-control form_control" type="text" placeholder="Kanish" id="FN">
+                                                        <input class="form-control form_control" type="text" placeholder="Kanish"    id="FN1">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -152,16 +151,54 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">Phone *</label>
-                                                        <input name="form_phone" class="form-control form_control" type="number" id="phn121">
+                                                        <label class="form-label">Phone *</label><span class="form-label" id="ed" style="color:red;"></span>
+                                                        <input name="form_phone" class="form-control form_control" type="number" id="phn121" onkeyup="validatePhoneNumberInput()">
                                                     </div>
                                                 </div>
+                                                <script>
+                                                    function validatePhoneNumberInput()
+                                                    {
+                                                        const input = document.getElementById("phn121");
+                                                        const value = input.value;
+                                                        const phoneRegex = /^\d{10}$/;
+                                                        if (phoneRegex.test(value))
+                                                        {
+                                                            document.getElementById("ed").innerHTML = "";
+                                                        } else {
+                                                            document.getElementById("ed").innerHTML = "*";
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="form-label">Your Email</label>
-                                                        <input name="form_email" class="form-control form_control email" type="email" id="em121">
+                                                        <label class="form-label">Your Email</label><span class="form-label" id="ee" style="color:red;"></span>
+                                                        <input name="form_email" class="form-control form_control email" type="email" id="em121" onkeyup="chkeml()">
                                                     </div>
                                                 </div>
+                                                <script>
+                                                    function chkeml() {
+                                                        const email = document.getElementById("E1").value;
+                                                        if (email === "")
+                                                        {
+                                                            document.getElementById("ee").innerHTML = "*";
+                                                        } else
+                                                        {
+                                                            const isValid = isValidEmail(email);
+                                                            if (isValid)
+                                                            {
+                                                                document.getElementById("ee").innerHTML = "";
+                                                            } else
+                                                            {
+                                                                document.getElementById("ee").innerHTML = "*";
+                                                            }
+                                                        }
+                                                    }
+                                                    function isValidEmail(email) {
+                                                        // regular expression pattern for email validation
+                                                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                                        return emailPattern.test(email);
+                                                    }
+                                                </script>
                                                 <div class="col-sm-12">
                                                     <div class="form-group mb0">
                                                         <label class="ai_title">Order notes (optional)</label>
@@ -178,31 +215,100 @@
                                     <h4 class="title">Your Order</h4>
                                     <ul id="rat">
                                         <script>
-                                   function hel()
+                                            function hel()
                                             {
                                                 let user = '<%=user%>';
-                                                alert(user);
-                                                fetch(`Order?user=${user}`).then(data=>data.json()).then(resp=>{
-                                                    let arr=resp.ans;
-                                                    alert(resp);
-                                                    console.log(arr);
-                                                    let ans="";
-                                                    for(let i =0; i<arr.length; i++)
+                                                fetch(`Order?user=${user}`).then(data => data.json()).then(resp => {
+                                                    let arr = resp.ans;
+                                                    let ans = "";
+                                                    for (let i = 0; i < arr.length; i++)
                                                     {
                                                         let obj = arr[i];
-                                                        ans+="<li class=\"pb0\"><p class=\"product_name_qnt\">"+decodeURIComponent(obj.pname)+" </p><span class=\"price\">"+obj.TotalPrice+"</span></li>";
+                                                        ans += "<li class=\"pb0\"><p class=\"product_name_qnt\">" + decodeURIComponent(obj.pname) + " </p><span class=\"price\">" + obj.TotalPrice + "</span></li>";
                                                     }
-                                                    ans+="<li class=\"subtitle\"><p>Sub Total <span class=\"float-end totals\">&#8377;<%=total%></span></p></li>"; 
-                                                    ans+="<li class=\"subtitle\"><p>Shipping <span class=\"float-end totals\">&#8377;0.0</span></p></li>";
-                                                    ans+="<li class=\"subtitle\"><p>Taxes&GST <span class=\"float-end totals\">%12</span></p></li>";
-                                                    ans+="<li class=\"subtitle\"><p>Total <span class=\"float-end totals\">&#8377;<%=total%></span></p></li>";
-                                                  document.getElementById("rat").innerHTML=ans;
+                                                    ans += "<li class=\"subtitle\"><p>Sub Total <span class=\"float-end totals\">&#8377;<%=total%></span></p></li>";
+                                                    ans += "<li class=\"subtitle\"><p>Shipping <span class=\"float-end totals\">&#8377;0.0</span></p></li>";
+                                                    ans += "<li class=\"subtitle\"><p>Taxes&GST <span class=\"float-end totals\">%12</span></p></li>";
+                                                    ans += "<li class=\"subtitle\"><p>Total <span class=\"float-end totals\">&#8377;<%=total%></span></p></li>";
+                                                    document.getElementById("rat").innerHTML = ans;
                                                 });
                                             }
-                                        
+
                                         </script>
                                     </ul>
                                 </div>
+                                <div class="payment_method">
+                                    <div class="ui_kit_radiobox pm_content bb1">
+                                        <div class="radio mb10">
+                                            <input id="radio_one" name="radio" type="radio" checked="">
+                                            <label class="pmtitle" for="radio_one"><span class="radio-label"></span> Direct bank transfer</label>
+                                        </div>
+                                        <div class="pm_details">
+                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ui_kit_radiobox pm_content bb1">
+                                        <div class="radio mb10">
+                                            <input id="radio_one2" name="radio" type="radio">
+                                            <label class="pmtitle" for="radio_one2"><span class="radio-label"></span> Online Payment</label>
+                                        </div>
+                                    </div>
+                                    <div class="ui_kit_radiobox pm_content">
+                                        <div class="radio mb10">
+                                            <input id="radio_one3" name="radio" type="radio" onclick="cod()">
+                                            <label class="pmtitle" for="radio_one3"><span class="radio-label"></span> Cash on Delivery</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    <script>
+                                                        
+                                                        function cod()
+                                                        {
+                                                            let user='<%=user%>';
+                                                            let total = <%=total%>;
+                                                            alert(total);alert(user);
+                                                let FN = document.getElementById("FN1").value;
+                                                alert(FN);
+                                                let LN = document.getElementById("LN").value;
+                                                let country = document.getElementById("SelCo").value;
+                                                let addr = document.getElementById("StAdd").value;
+                                                let city = document.getElementById("city").value;
+                                                let state = document.getElementById("State").value;
+                                                let zip = document.getElementById("zip").value;
+                                                let phn = document.getElementById("phn121").value;
+                                                let email = document.getElementById("em121").value;
+                                                if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
+                                                {
+                                                    alert("fill completely");
+                                                } else
+                                                {
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.onreadystatechange = function ()
+                                                    {
+                                                        if (this.readyState == 4 && this.status == 200)
+                                                        {
+                                                            let resp = this.responseText;
+                                                            alert(resp);
+                                                            alert("hogya");
+                                                        }
+                                                    };
+                                                    let ord = new FormData();
+                                                    ord.append("FN", document.getElementById("FN1").value);
+                                                    ord.append("LN", document.getElementById("LN").value);
+                                                    ord.append("country", document.getElementById("SelCo").value);
+                                                    ord.append("addr", document.getElementById("StAdd").value);
+                                                    ord.append("city", document.getElementById("city").value);
+                                                    ord.append("state", document.getElementById("State").value);
+                                                    ord.append("zip", document.getElementById("zip").value);
+                                                    ord.append("phn", document.getElementById("phn121").value);
+                                                    ord.append("total", total);
+                                                    ord.append("email", document.getElementById("em121").value);
+                                                    ord.append("user",  user);
+                                                    xhr.open("POST", "./Payment", true);
+                                                    xhr.send(ord);
+                                                }
+                                                        }
+                                                        </script>
                                 <div class="ui_kit_checkbox checkout_pm">
                                     <label class="custom_checkbox">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
                                         <input type="checkbox">
