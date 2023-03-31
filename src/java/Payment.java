@@ -95,7 +95,7 @@ public class Payment extends HttpServlet
                     rs7.deleteRow();
                 }
            }
-           out.println("success");
+           out.println(orderid);
         }
         catch(Exception e)
         {

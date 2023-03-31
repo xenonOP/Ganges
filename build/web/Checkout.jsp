@@ -19,7 +19,7 @@
             <div class="preloader"></div> 
             <!----------------------------------------------------------------------------------------------PreLoader div--------------------------------------------------------------------------------------------------------------------------------------->
             <!-----------------------------------------------------------------------------------------------NavBar Inserted----------------------------------------------------------------------------------------------------------------------------------------------->        
-            <%@include file ="Navbar.jsp" %>
+            <%@include file ="Navbar.jsp" %><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             <!-----------------------------------------------------------------------------------------------NavBar Inserted----------------------------------------------------------------------------------------------------------------------------------------------->          
             <!-------------------------------------------------------------------------------------------------------------------BODY----------------------------------------------------------------------------------------------------------------------------->
             <% String total = request.getParameter("total"); %>
@@ -42,52 +42,7 @@
                                     </div>
                                     <h4 class="title mb20">Billing details</h4>
                                     <div class="checkout_coupon ui_kit_button">
-                                        <script>
-                                           
-                                            function order()
-                                            {
-                                                
 
-                                                let FN = document.getElementById("FN").value;
-                                                let LN = document.getElementById("LN").value;
-                                                let country = document.getElementById("SelCo").value;
-                                                let addr = document.getElementById("StAdd").value;
-                                                let city = document.getElementById("city").value;
-                                                let state = document.getElementById("State").value;
-                                                let zip = document.getElementById("zip").value;
-                                                let phn = document.getElementById("phn").value;
-                                                let email = document.getElementById("email").value;
-
-                                                if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
-                                                {
-                                                    alert("fill completely");
-                                                } else
-                                                {
-                                                    let xhr = new XMLHttpRequest();
-                                                    xhr.onreadystatechange = function ()
-                                                    {
-                                                        if (this.readyState == 4 && this.status == 200)
-                                                        {
-                                                            let resp = this.responseText;
-
-                                                        }
-                                                    };
-                                                    let ord = new FormData();
-                                                    ord.append("FN", FN);
-                                                    ord.append("LN", LN);
-                                                    ord.append("country", country);
-                                                    ord.append("addr", addr);
-                                                    ord.append("city", city);
-                                                    ord.append("state", state);
-                                                    ord.append("zip", zip);
-                                                    ord.append("phn", phn);
-                                                    ord.append("email", email);
-                                                    
-                                                    xhr.open("GET", "./", true);
-                                                    xhr.send(ord);
-                                                }
-                                            }
-                                        </script>
                                         <form class="form2" id="coupon_form" name="contact_form" action="#" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -265,46 +220,62 @@
                                     </div>
                                 </div> 
                                 <script>
-                                     let payMent="khaali";
+                                    let payMent = "khaali";
+                                    let tttl = <%=total%>;
                                     function tts()
                                     {
-                                        
+
                                         var paytype = document.getElementsByName('radioPAY');
-                                                for (var i = 0; i < paytype.length; i++) {
-                                                    paytype[i].addEventListener('click', function () {
-                                                        var selectedColor = this.value;
+                                        for (var i = 0; i < paytype.length; i++) {
+                                            paytype[i].addEventListener('click', function () {
+                                                var selectedColor = this.value;
 
-                                                        // Loop through all labels and set their styles
-                                                        var labels = document.getElementsByTagName('label');
-                                                        for (var j = 0; j < labels.length; j++) {
-                                                            labels[j].style.color = 'black';
-                                                            labels[j].style.fontWeight = 'normal';
-                                                        }
-
-                                                        // Get the label element associated with the selected radio button
-                                                        var label = document.querySelector('label[for="' + this.id + '"]');
-
-                                                        // Set the styles of the selected label
-                                                        label.style.color = 'black';
-                                                        label.style.fontWeight = 'bold';
-
-                                                        // Call different functions based on the selected color
-                                                        if (selectedColor === 'ONLINE') {
-                                                           payMent="ONLINE";
-                                                        } else if (selectedColor === 'COD') {
-                                                           payMent = "COD";
-                                                        } 
-                                                    });
+                                                // Loop through all labels and set their styles
+                                                var labels = document.getElementsByTagName('label');
+                                                for (var j = 0; j < labels.length; j++) {
+                                                    labels[j].style.color = 'black';
+                                                    labels[j].style.fontWeight = 'normal';
                                                 }
-                                        
-                                       
+
+                                                // Get the label element associated with the selected radio button
+                                                var label = document.querySelector('label[for="' + this.id + '"]');
+
+                                                // Set the styles of the selected label
+                                                label.style.color = 'black';
+                                                label.style.fontWeight = 'bold';
+
+                                                // Call different functions based on the selected color
+                                                if (selectedColor === 'ONLINE') {
+                                                    payMent = "ONLINE";
+                                                } else if (selectedColor === 'COD') {
+                                                    payMent = "COD";
+                                                }
+                                            });
+                                        }
+
+
                                     }
+                                    
+                                    function pais()
+                                    {
+                                        if(payMent==="ONLINE")
+                                        {
+                                            payment_done();
+                                        }
+                                        else
+                                        {
+                                            cod();
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    
                                     function cod()
                                     {
                                         let user = '<%=user%>';
                                         let total = <%=total%>;
                                         let FN = document.getElementById("FN1").value;
-                                        alert(FN);
                                         let LN = document.getElementById("LN").value;
                                         let country = document.getElementById("SelCo").value;
                                         let addr = document.getElementById("StAdd").value;
@@ -316,8 +287,7 @@
                                         if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
                                         {
                                             alert("fill completely");
-                                        }
-                                        else
+                                        } else
                                         {
                                             let xhr = new XMLHttpRequest();
                                             xhr.onreadystatechange = function ()
@@ -325,10 +295,7 @@
                                                 if (this.readyState == 4 && this.status == 200)
                                                 {
                                                     let resp = this.responseText.trim();
-                                                    if(resp=="success")
-                                                    {
-                                                        window.location.href="INVOICE.jsp";
-                                                    }
+                                                    window.location.href = "INVOICE.jsp?orderid=" + resp + "&total=" + total;
                                                 }
                                             };
                                             let ord = new FormData();
@@ -356,12 +323,108 @@
                                     </label>
                                 </div>
                                 <div class="ui_kit_button payment_widget_btn">
-                                    <button type="button" class="btn btn-thm btn-block mb0" onclick="cod()">Place Order</button>
+                                    <button type="button" class="btn btn-thm btn-block mb0" onclick="pais()">Place Order</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <script>
+                                            let rakam = '<%=total%>';
+                                            function save_rec() {
+                                                payment_done();
+                                            }
+
+                                            function payment_done() {
+                                                var options = {
+                                                    "key": "rzp_test_96HeaVmgRvbrfT", // Enter the Key ID generated from the Dashboard
+                                                    "amount": rakam + "00", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
+                                                    "currency": "INR",
+                                                    "name": "Ganges",
+                                                    "description": "Ganges Online Payment",
+                                                    "image": "images/apple-touch-icon-180x180.png",
+                                                    "handler": function (response) {
+                                                        if (response.razorpay_payment_id == "" || response.razorpay_payment_id == undefined) {
+
+                                                        window.location.href = "payment_action?status=failed";
+                                                                // paymentfail(authormobile,"Payment failed!");
+
+                                                                alert("Payment Failed")
+
+                                                        } else
+                                                           {
+                                                            let user = '<%=user%>';
+                                        let total = <%=total%>;
+                                        let FN = document.getElementById("FN1").value;
+                                        let LN = document.getElementById("LN").value;
+                                        let country = document.getElementById("SelCo").value;
+                                        let addr = document.getElementById("StAdd").value;
+                                        let city = document.getElementById("city").value;
+                                        let state = document.getElementById("State").value;
+                                        let zip = document.getElementById("zip").value;
+                                        let phn = document.getElementById("phn121").value;
+                                        let email = document.getElementById("em121").value;
+                                        if (FN === "" || LN === "" || country === "" || addr === "" || city === "" || state === "" || zip === "" || phn === "" || email === "")
+                                        {
+                                            alert("fill completely");
+                                        } else
+                                        {
+                                            let xhr = new XMLHttpRequest();
+                                            xhr.onreadystatechange = function ()
+                                            {
+                                                if (this.readyState == 4 && this.status == 200)
+                                                {
+                                                    let resp = this.responseText.trim();
+                                                    window.location.href = "INVOICE.jsp?orderid=" + resp + "&total=" + total;
+                                                }
+                                            };
+                                            let ord = new FormData();
+                                            ord.append("FN", document.getElementById("FN1").value);
+                                            ord.append("LN", document.getElementById("LN").value);
+                                            ord.append("country", document.getElementById("SelCo").value);
+                                            ord.append("addr", document.getElementById("StAdd").value);
+                                            ord.append("city", document.getElementById("city").value);
+                                            ord.append("state", document.getElementById("State").value);
+                                            ord.append("zip", document.getElementById("zip").value);
+                                            ord.append("phn", document.getElementById("phn121").value);
+                                            ord.append("total", total);
+                                            ord.append("email", document.getElementById("em121").value);
+                                            ord.append("pay", payMent);
+                                            ord.append("user", user);
+                                            xhr.open("POST", "./Payment", true);
+                                            xhr.send(ord);
+                                                        }
+                                                        
+                                                        }
+                                                        },
+                                                        "prefill":
+                                                        {
+                                                        "name": "Enter Name", "email": "Ganges@gmail.com",
+                                                                "contact": ""
+                                                            },
+                                                    "notes": {
+                                                        "address": ""
+                                                    },
+                                                    "theme": {
+                                                        "color": "#002E6E"
+                                                    },
+                                                   "modal": {
+                                                            "ondismiss": function () {
+                                                            $("#statusmodal").modal("show");
+                                                             document.getElementById("status").innerHTML = "Payment failed ! Try again";
+                                                                }
+                                                }
+                                           };
+                                                var rzp1 = new Razorpay(options);
+                                                rzp1.on('payment.failed', function (response) {
+                                                console.log(response.error.code);
+                                                alert("Payment Failed");
+                                                 });
+                                                    rzp1.open();
+                                                   
+                                            }
+                </script>
             </div>
             <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
         </div>

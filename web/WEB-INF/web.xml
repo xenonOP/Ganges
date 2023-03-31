@@ -112,6 +112,10 @@
         <servlet-name>Payment</servlet-name>
         <servlet-class>Payment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>invoice</servlet-name>
+        <servlet-class>invoice</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>Payment</servlet-name>
         <url-pattern>/Payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>invoice</servlet-name>
+        <url-pattern>/invoice</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
