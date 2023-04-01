@@ -10,33 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="keywords" content="auto parts, baby store, ecommerce, electronics, fashion, food, marketplace, modern, multi vendor, multipurpose, organic, responsive, shop, shopping, store">
-        <script>
-            function go1()
-            {
-                let sony = document.getElementById("sony").innerHTML;
-                document.getElementById("inp1").value = sony;
-            }
-            function go2()
-            {
-                let sony2 = document.getElementById("sony2").innerHTML;
-                document.getElementById("inp1").value = sony2;
-            }
-            function go3()
-            {
-                let tv = document.getElementById("tv").innerHTML;
-                document.getElementById("inp1").value = tv;
-            }
-            function go4()
-            {
-                let cam = document.getElementById("camera").innerHTML;
-                document.getElementById("inp1").value = cam;
-            }
-            function go5()
-            {
-                let apple = document.getElementById("apple").innerHTML;
-                document.getElementById("inp1").value = apple;
-            }
-        </script>
+        
         <%@include file ="Header.jsp" %>
     </head>
     <!-----------------------------------------------------------------------------------------------HEAD----------------------------------------------------------------------------------------------------------------------------------------------->

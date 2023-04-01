@@ -11,34 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="keywords" content="auto parts, baby store, ecommerce, electronics, fashion, food, marketplace, modern, multi vendor, multipurpose, organic, responsive, shop, shopping, store">
-        <script>
-            function go1()
-            {
-                let sony = document.getElementById("sony").innerHTML;
-                document.getElementById("inp1").value = sony;
-            }
-            function go2()
-            {
-                let sony2 = document.getElementById("sony2").innerHTML;
-                document.getElementById("inp1").value = sony2;
-            }
-            function go3()
-            {
-                let tv = document.getElementById("tv").innerHTML;
-                document.getElementById("inp1").value = tv;
-            }
-            function go4()
-            {
-                let cam = document.getElementById("camera").innerHTML;
-                document.getElementById("inp1").value = cam;
-            }
-            function go5()
-            {
-                let apple = document.getElementById("apple").innerHTML;
-                document.getElementById("inp1").value = apple;
-            }
-        </script>
-        <%@include file ="Header.jsp" %>
+       <%@include file ="Header.jsp" %>
     </head>
     <!-----------------------------------------------------------------------------------------------HEAD----------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -156,7 +129,6 @@
                                                         {
                                                             fetch(`MainPageLoad?catname=electro`).then(data => data.json()).then(resp => {
                                                                 let arr = resp.ans;
-                                                                console.log(arr);
                                                                 let ans = "<div class=\"col-sm-5 col-lg-4 col-xl-2\">";
                                                                 ans += "<div class=\"banner_one home1_style color2 home4_style twoimg h450\">";
                                                                 ans += "<div class=\"thumb t0\"><img class=\"h100p\" src=\"images/banner/banner7-home4.png\" alt=\"Electronics\"></div>";
@@ -167,6 +139,7 @@
                                                                 {
                                                                     let obj = arr[i];
                                                                     let myStr = obj.pname;
+                                                                    myStr=decodeURIComponent(myStr);
                                                                     let firstWord = myStr.split(" ")[0];
                                                                     ans += "<div class=\"col-sm-6 col-lg-4 col-xl-2\">";
                                                                     ans += "<div class=\"shop_item line_clip_less px-2 text-center text-sm-start\">";
@@ -178,7 +151,7 @@
                                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><button class=\"btn btn-thm\" onclick=\"checkloginC(" + obj.productid +","+obj.offerPrice+ ")\">Add to Cart</button></div></div>";
                                                                     ans += "<div class=\"details\">";
                                                                     ans += "<div class=\"sub_title\">" + firstWord + "</div>";
-                                                                    ans += "<div class=\"title\"><a href=\"page-shop-single-v1.html\">" + obj.pname + "</a></div>";
+                                                                    ans += "<div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr + "</a></div>";
                                                                     ans += "<div class=\"review d-flex justify-content-center justify-content-sm-start\">";
                                                                     ans += "<div class=\"review_count\"><a href=\"#\">" + obj.reviews + "</a></div></div>";
                                                                     ans += "<div class=\"si_footer\"><div class=\"price\">&#8377;" + obj.offerPrice + "<small>";
@@ -297,7 +270,7 @@
                                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><button class=\"btn btn-thm\" onclick=\"checkloginC(" + obj.productid +","+obj.offerPrice+ ")\">Add to Cart</button></div></div>";
                                                                     ans += "<div class=\"details\">";
                                                                     ans += "<div class=\"sub_title\">" + firstWord + "</div>";
-                                                                    ans += "<div class=\"title\"><a href=\"page-shop-single-v1.html\">" + myStr+ "</a></div>";
+                                                                    ans += "<div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr+ "</a></div>";
                                                                     ans += "<div class=\"review d-flex justify-content-center justify-content-sm-start\">";
                                                                     ans += "<div class=\"review_count\"><a href=\"#\">" + obj.reviews + "</a></div></div>";
                                                                     ans += "<div class=\"si_footer\"><div class=\"price\">&#8377;" + obj.offerPrice + "<small>";
@@ -368,7 +341,7 @@
                                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><button class=\"btn btn-thm\" onclick=\"checkloginC(" + obj.productid +","+obj.offerPrice+ ")\">Add to Cart</button></div></div>";
                                                                     ans += "<div class=\"details\">";
                                                                     ans += "<div class=\"sub_title\">" + firstWord + "</div>";
-                                                                    ans += "<div class=\"title\"><a href=\"page-shop-single-v1.html\">" + myStr+ "</a></div>";
+                                                                    ans += "<div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr+ "</a></div>";
                                                                     ans += "<div class=\"review d-flex justify-content-center justify-content-sm-start\">";
                                                                     ans += "<div class=\"review_count\"><a href=\"#\">" + obj.reviews + "</a></div></div>";
                                                                     ans += "<div class=\"si_footer\"><div class=\"price\">&#8377;" + obj.offerPrice + "<small>";
@@ -438,7 +411,7 @@
                                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><button class=\"btn btn-thm\" onclick=\"checkloginC(" + obj.productid +","+obj.offerPrice+ ")\">Add to Cart</button></div></div>";
                                                                     ans += "<div class=\"details\">";
                                                                     ans += "<div class=\"sub_title\">" + firstWord + "</div>";
-                                                                    ans += "<div class=\"title\"><a href=\"page-shop-single-v1.html\">" + myStr+ "</a></div>";
+                                                                    ans += "<div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr+ "</a></div>";
                                                                     ans += "<div class=\"review d-flex justify-content-center justify-content-sm-start\">";
                                                                     ans += "<div class=\"review_count\"><a href=\"#\">" + obj.reviews + "</a></div></div>";
                                                                     ans += "<div class=\"si_footer\"><div class=\"price\">&#8377;" + obj.offerPrice + "<small>";

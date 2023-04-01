@@ -116,6 +116,10 @@
         <servlet-name>invoice</servlet-name>
         <servlet-class>invoice</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrdInfo</servlet-name>
+        <servlet-class>PrdInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>invoice</servlet-name>
         <url-pattern>/invoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrdInfo</servlet-name>
+        <url-pattern>/PrdInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

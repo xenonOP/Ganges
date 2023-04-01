@@ -53,7 +53,7 @@
                                                             let mainobj = JSON.parse(resp);
                                                             let arr = mainobj.ans;
                                                             console.log(arr);
-                                                            let ans = "<div class=\"box-suggestions\" style=\"border-radius: 10px\"><ul style=\"border-radius: 20px\">";
+                                                            let ans = "<div class=\"box-suggestions\" style=\"border-radius: 10px; width:708px\"><ul style=\"border-radius: 20px\">";
                                                             for (let i = 0; i < arr.length; i++)
                                                             {
                                                                 let obj = arr[i];          
@@ -61,7 +61,7 @@
                                                                 mystr= decodeURIComponent(mystr);
                                                                 if(cat=="AllCategory")
                                                                 {ans += "<li style=\"background-color: white\" onclick=\"went("+obj.productid+")\">";
-                                                                ans += "<div class=\"thumb\"><img src=\""+obj.photo+"\" style=\"width: 130px; height: 90px;\" alt=\"sf1.png\"  onmouseover=\"gott('sony"+i+"')\"></div>";
+                                                                ans += "<div class=\"thumb\"><img src=\""+obj.photo+"\" style=\"width: 150px; height: 90px;\" alt=\"sf1.png\"  onmouseover=\"gott('sony"+i+"')\"></div>";
                                                                 ans += "<div class=\"info-product\">";
                                                                 ans += "<div class=\"item_title\" id=\"sony"+i+"\">"+mystr+"</div>";
                                                                 ans += "<div class=\"price\"><span class=\"sale\">&#8377;"+obj.offerPrice+"</span></div>";
@@ -584,7 +584,7 @@
                 var resp = this.responseText.trim();
                 if (resp === "success")
                 {
-                    window.location.href = "MainPage.jsp";
+                    location.reload();
                 } else if (resp === "Enter correct username")
                 {
                     document.getElementById("US1").innerHTML = "*";
