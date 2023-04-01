@@ -665,7 +665,7 @@
                                                 let obj = arr[i];
                                                 ans += "<li class=\"list_content\">";
                                                 ans += "<div><img class=\"float-start mt10\" src=\"" + obj.photo + "\" alt=\"75x75\">";
-                                                ans += "<p>" + obj.prdname + "</p>";
+                                                ans += "<p>" + decodeURIComponent(obj.prdname)+ "</p>";
                                                 ans += "<div class=\"cart_btn home_page_sidebar mt10\">";
                                                 ans += "<div class=\"quantity-block home_page_sidebar\">";
                                                 ans += "<button class=\"quantity-arrow-minus home_page_sidebar\" onclick=\"decrCartSide('ofp" + i + "', 'id" + i + "', 'idd" + i + "', '" + obj.prdid + "')\"><img src=\"images/icons/minus.svg\" alt=\"\"  ></button>";

@@ -45,6 +45,7 @@ public class Payment extends HttpServlet
             rs.updateString("country", country); 
             rs.updateString("FirstN", fn);
             rs.updateString("LastN", ln);
+            rs.updateString("total", total);
             rs.updateString("zip", zip);
             rs.updateString("payment", pay);
            rs.insertRow();

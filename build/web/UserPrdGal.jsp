@@ -47,67 +47,92 @@
                                 <div class="shop_single_natabmenu">
                                     <div class="d-block d-sm-flex align-items-start posr pb100-xs">
                                         <div class="nav d-flex flex-sm-column nav-pills me-0 me-sm-3 custom_nav_list" id="v-pills-tab2" role="tablist" aria-orientation="vertical">
-                                            <% 
-                                            int p1d = Integer.parseInt(request.getParameter("pid"));
-                                            String mn = "";
-                                            try{
-                                            ResultSet rds1 = DBLoader.executeQuery("SELECT * FROM ganges.product where productid="+p1d);
-                                            if(rds1.next())
-                                            {
-                                             String pit  = rds1.getString("photo");
-                                             mn = pit;
-                                             %>
-                                            <button class="nav-link me-3 me-sm-0" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="<%=pit%>" alt=""></button>
+                                            <% int pdid = Integer.parseInt(request.getParameter("pid"));
+                                                String uni = "";
+                                                try{
+                                                ResultSet im  = DBLoader.executeQuery("select * from ganges.product where productid="+pdid);
+                                                if(im.next())
+                                                {
+                                                    String foto = im.getString("photo");
+                                                    uni = foto;
+                                                    %>
+                                             <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="<%=foto%>" alt=""></button>
+                                                    <%
+                                                }
+                                                }
+                                                catch(Exception e)
+                                                {
+                                                    e.printStackTrace();
+                                                }
+                                            
+                                            %>
+                                             <% int pddi = Integer.parseInt(request.getParameter("pid"));
+                                                String uni2 = ""; String uni3 = "";
+                                                try{
+                                                ResultSet img1  = DBLoader.executeQuery("select * from ganges.productdetail where productid="+pddi);
+                                                if(img1.next())
+                                                {
+                                                    String foto1 = img1.getString("photo");
+                                                    uni2 = foto1;
+                                                    %>
+                                            <button class="nav-link me-3 me-sm-0" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="<%=foto1%>" alt=""></button>
                                             <%
                                                 }
-                                            }
-                                            catch(Exception e)
-                                            {
-                                                e.printStackTrace();
-                                            }
-                                            %>
-                                            <% 
-                                            int p111d = Integer.parseInt(request.getParameter("pid"));
-                                            String mn = "";
-                                            try{
-                                            ResultSet rds1 = DBLoader.executeQuery("SELECT * FROM ganges.productdetail where productid="+p111d);
-                                            while(rss.next())
-                                            {
-                                             String pit  = rss.getString("photo");
-                                             mn = pit;
-                                             %>
+                                                if(img1.next())
+                                                {
+                                                    String foto13 = img1.getString("photo");
+                                                    uni3 = foto13;
+                                                    %>
+                                            <button class="nav-link me-3 me-sm-0" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="<%=foto13%>" alt=""></button>
+                                                <%
+                                                }
+                                                }
+                                                catch(Exception e)
+                                                {
+                                                    e.printStackTrace();
+                                                }
                                             
-                                            <button class="nav-link me-3 me-sm-0" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="images/shop/ss2.png" alt=""></button>
-                                            <button class="nav-link active" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="images/shop/ss3.png" alt=""></button>
+                                            %>
                                         </div>
                                         <div class="tab-content ms-0 m-xl-auto custom_tab_contents" id="v-pills-tabContent">
-                                            <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                            
+                                            
+                                            
+                                            <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                 <div class="shop_single_navmenu_content justify-content-center">
-                                                    <a class="product_popup popup-img" href="<%=mn%>"><span class="flaticon-full-screen"></span></a>
+                                                    <a class="product_popup popup-img" href="<%=uni%>"><span class="flaticon-full-screen"></span></a>
+                                                    <div class="zoomimg_wrapper m-auto hizoom hi3">
+                                                        <img class="zoom-img" id="zoom_03" src="<%=uni%>" data-zoom-image="<%=uni%>" width="510" alt="Shop Single Image"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    
+                                                    
+                                            <div class="tab-pane fade " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                <div class="shop_single_navmenu_content justify-content-center">
+                                                    <a class="product_popup popup-img" href="<%=uni2%>"><span class="flaticon-full-screen"></span></a>
                                                     <div class="zoomimg_wrapper m-auto">
-                                                        <img class="zoom-img" id="zoom_01" src="<%=mn%>" data-zoom-image="<%=mn%>" width="510" alt="Shop Single Image"/>
+                                                        <img class="zoom-img" id="zoom_01" src="<%=uni2%>" data-zoom-image="<%=uni2%>" width="510" alt="Shop Single Image"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                 <div class="shop_single_navmenu_content justify-content-center">
-                                                    <a class="product_popup popup-img" href="images/shop/ss2.png"><span class="flaticon-full-screen"></span></a>
+                                                    <a class="product_popup popup-img" href="<%=uni3%>"><span class="flaticon-full-screen"></span></a>
                                                     <div class="zoomimg_wrapper m-auto hizoom hi2">
-                                                        <img class="zoom-img" id="zoom_02" src="images/shop/ss2.png" data-zoom-image="images/shop/ss2.png" width="510" alt="Shop Single Image"/>
+                                                        <img class="zoom-img" id="zoom_02" src="<%=uni3%>" data-zoom-image="<%=uni3%>" width="510" alt="Shop Single Image"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade show active" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                                <div class="shop_single_navmenu_content justify-content-center">
-                                                    <a class="product_popup popup-img" href="images/shop/ss3.png"><span class="flaticon-full-screen"></span></a>
-                                                    <div class="zoomimg_wrapper m-auto hizoom hi3">
-                                                        <img class="zoom-img" id="zoom_03" src="images/shop/ss3.png" data-zoom-image="images/shop/ss3.png" width="510" alt="Shop Single Image"/>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
+                                
+                                
+                                
+                                
+                                
                                 <% 
                                     int pd = Integer.parseInt(request.getParameter("pid"));
                                     try{
@@ -177,7 +202,7 @@
                                                                                 ans += "<ul class=\"mb0\">";
                                                                                 ans += "<li><a href=\"#\">Fast Delivery: Ships in 1 day</a></li><li><a href=\"#\">Free Cargo</a></li></ul> </div>";
                                                                                 ans += "<div class=\"d-flex justify-content-between align-items-center\">";
-                                                                                ans += "<div class=\"price\">&#8377;" + obj.offerPrice + "<small>&nbsp;<del>&#8377;" + obj.price + "</del></small></div>";
+                                                                                ans += "<div class=\"price\">&#8377;" + (obj.offerPrice).toLocaleString("en-US")+ "<small>&nbsp;<del>&#8377;" + (obj.price).toLocaleString("en-US") + "</del></small></div>";
                                                                                 ans += "<a class=\"btn btn-white bdr_thm\" href=\"\"UserPrdGal.jsp?pid=\"+obj.productid+\"\">Go Product</a>";
                                                                                 ans += "</div></div></div></div>";
                                                                             }
@@ -287,7 +312,7 @@
                                                 ans += "</ul>";
                                                 ans += "<h4 class=\"title mb15\">" + decodeURIComponent(obj.pname) + "</h4>";
                                                 ans += "<hr>";
-                                                ans += "<div class=\"sspd_price mb25 mt20\">&#8377;" + obj.offerPrice + "<small>&nbsp; &nbsp; <del class=\"mr10\">&#8377;" + obj.price + "</del></small></div>";
+                                                ans += "<div class=\"sspd_price mb25 mt20\">&#8377;" + (obj.offerPrice).toLocaleString("en-US") + "<small>&nbsp; &nbsp; <del class=\"mr10\">&#8377;" + (obj.price).toLocaleString("en-US") + "</del></small></div>";
                                                 ans += "<ul class=\"cart_btns ui_kit_button justify-content-between\">";
                                                 ans += "<li><button type=\"button\" class=\"btn btn-thm\" style=\"width:380px\" onclick=\"checkloginC(" + obj.productid + "," + obj.offerPrice + ")\">Add to cart</button></li></ul>";
                                                 ans += "<div class=\"d-grid mb-3\">";
@@ -414,7 +439,8 @@
                                             {
                                                 let arr = resp.ans;
                                                 let ans = "";
-                                                for (let i = 0; i < 5; i++)
+                                               
+                                                for (let i = 0; i < 6; i++)
                                                 {
                                                     let obj = arr[i];
                                                     let myStr = obj.pname;
@@ -425,7 +451,7 @@
                                                     ans += "<img class=\"w100\" src=\"" + obj.photo + "\" style=\"width:198px; height:198px;\" alt=\"Shop Item1\"><div class=\"thumb_info\">";
                                                     ans += "<ul class=\"mb0\"> <li><a href=\"page-dashboard-wish-list.html\"><span class=\"flaticon-heart\"></span></a></li></ul></div>";
                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><a href=\"page-shop-cart.html\" class=\"btn btn-thm\">Add to Cart</a></div>";
-                                                    ans += "</div><div class=\"details\"><div class=\"sub_title\">" + firstWord + "</div><div class=\"title\"><a href=\"\">" + myStr + "</a></div>";
+                                                    ans += "</div><div class=\"details\"><div class=\"sub_title\">" + firstWord + "</div><div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr + "</a></div>";
                                                     ans += "<div class=\"review d-flex db-400\"><ul class=\"mb0 me-2\"><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";
                                                     ans += "<li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";
                                                     ans += "<li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";
@@ -469,7 +495,7 @@
                                                     ans += "<img class=\"w100\" src=\"" + obj.photo + "\" style=\"width:198px; height:198px;\" alt=\"Shop Item1\"><div class=\"thumb_info\">";
                                                     ans += "<ul class=\"mb0\"> <li><a href=\"page-dashboard-wish-list.html\"><span class=\"flaticon-heart\"></span></a></li></ul></div>";
                                                     ans += "<div class=\"shop_item_cart_btn d-grid\"><a href=\"page-shop-cart.html\" class=\"btn btn-thm\">Add to Cart</a></div>";
-                                                    ans += "</div><div class=\"details\"><div class=\"sub_title\">" + firstWord + "</div><div class=\"title\"><a href=\"\">" + myStr + "</a></div>";
+                                                    ans += "</div><div class=\"details\"><div class=\"sub_title\">" + firstWord + "</div><div class=\"title\"><a href=\"UserPrdGal.jsp?pid="+obj.productid+"&catn="+obj.catname+"\">" + myStr + "</a></div>";
                                                     ans += "<div class=\"review d-flex db-400\"><ul class=\"mb0 me-2\"><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";
                                                     ans += "<li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";
                                                     ans += "<li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li><li class=\"list-inline-item\"><a href=\"#\"><i class=\"fas fa-star\"></i></a></li>";

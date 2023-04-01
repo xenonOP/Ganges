@@ -241,14 +241,14 @@
                                                     {
                                                         fetch(`MainPageLoad?catname=cloth `).then(data => data.json()).then(resp => {
                                                             let arr = resp.ans;
-                                                            console.log(arr);
+                                                            console.log(arr); let man = 0;
                                                             let ans = "<div class=\"col-sm-6 col-lg-4 col-xl-2\"><div class=\"banner_one home1_style color2 home4_style h450\"><div class=\"thumb\"><img class=\"float-end\" src=\"images/banner/banner10-home4.png\" alt=\"smartwatch\"></div>";
                                                             ans += "<div class=\"details\"><p class=\"para color-light-blue fw500\">From $1299</p>";
                                                             ans += "<h3 class=\"title\">Memorial Day savings</h3><a href=\"page-shop-list-v1.html\" class=\"shop_btn\">ShopNow</a></div>";
                                                             ans += "</div></div>";
-                                                            if(arr.length>5)
+                                                            if(arr.length>=5)
                                                             {
-                                                                let man = 5;
+                                                                 man = 5;
                                                             }
                                                             else
                                                             {
@@ -312,14 +312,14 @@
                                                     {
                                                         fetch(`MainPageLoad?catname=home`).then(data => data.json()).then(resp => {
                                                             let arr = resp.ans;
-                                                            console.log(arr);
+                                                            console.log(arr); let man = 0;
                                                             let ans = "<div class=\"col-sm-5 col-lg-4 col-xl-2\"><div class=\"banner_one home1_style color2 home4_style twoimg h450\"><div class=\"thumb t0\"><img class=\"h100p\" src=\"images/banner/banner8-home4.png\" alt=\"Furniture\"></div>";
                                                             ans += "<div class=\"details\"><p class=\"para color-light-blue fw500\">New from Mainstays</p>";
                                                             ans += "<h3 class=\"title\">Modern finds from $59</h3><a href=\"page-shop-list-v1.html\" class=\"shop_btn\">ShopNow</a></div>";
                                                             ans += "</div></div>";
-                                                            if(arr.length>5)
+                                                            if(arr.length>=5)
                                                             {
-                                                                let man = 5;
+                                                                man = 5;
                                                             }
                                                             else
                                                             {
@@ -383,13 +383,14 @@
                                                         fetch(`MainPageLoad?catname=healt`).then(data => data.json()).then(resp => {
                                                             let arr = resp.ans;
                                                             console.log(arr);
+                                                            let man=0;
                                                             let ans = "<div class=\"col-sm-6 col-lg-4 col-xl-2\"><div class=\"banner_one home1_style color2 home4_style twoimg h450\"><div class=\"thumb\"><img class=\"float-end\" src=\"images/banner/banner9-home4.png\" alt=\"smartwatch\"></div>";
                                                             ans += "<div class=\"details\"><p class=\"para color-light-blue fw500\">New from Mainstays</p>";
                                                             ans += "<h3 class=\"title\">Beauty & Wellness Guide</h3><a href=\"page-shop-list-v1.html\" class=\"shop_btn\">ShopNow</a></div>";
                                                             ans += "</div></div>";
-                                                            if(arr.length>5)
+                                                            if(arr.length>=5)
                                                             {
-                                                                let man = 5;
+                                                                 man = 5;
                                                             }
                                                             else
                                                             {

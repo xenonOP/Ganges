@@ -120,6 +120,10 @@
         <servlet-name>PrdInfo</servlet-name>
         <servlet-class>PrdInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>prdIMG</servlet-name>
+        <servlet-class>prdIMG</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>PrdInfo</servlet-name>
         <url-pattern>/PrdInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>prdIMG</servlet-name>
+        <url-pattern>/prdIMG</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
