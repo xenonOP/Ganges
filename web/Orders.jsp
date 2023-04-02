@@ -43,20 +43,37 @@
                                                         <th scope="col">Payment</th>
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Total</th>
-                                                        <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <%
-                                                        try{
-                                                        ResultSet kkr = DBLoader.executeQuery("SELECT * FROM ganges.ordertable where username='"+ghrak+"'");
-                                                        
-                                                        }
-                                                        catch(Exception e)
-                                                        {
-                                                         e.printStackTrace();
-                                                        }
-                                                        %>
+                                                <tbody id="odo">
+                                                <script>
+                                                  window.onload=  function ordr()
+                                                    {
+                                                        let susr = '<%=ghrak%>';
+                                                        let url = "Order?user="+susr;
+                                                        fetch(url).then(data=>data.json()).then(resp=>{
+                                                            let ans = "";
+                                                            let arr = resp.ans;
+                                                            for(let i = 0; i<arr.length; i++)
+                                                            {
+                                                                let obj = arr[i];
+                                                                let mystr = obj.prdname;
+                                                                mystr= decodeURIComponent(mystr);
+                                                                let tt = obj.total;
+                                                                tt = tt.toLocaleString();
+                                                                ans+="<tr>";
+                                                                ans+="<th scope=\"row\">#"+obj.orderid+"</th>";
+                                                                ans+="<td>"+mystr+"</td>";
+                                                                ans+="<td>Apr 3, 2020</td>";
+                                                                ans+="<td>"+obj.payment+"</td>";
+                                                                ans+="<td class=\"status\"><span class=\"style1\">Delivered</span></td>";
+                                                                ans+="<td>"+tt+"</td>";
+                                                                ans+="</tr>";
+                                                            }
+                                                            document.getElementById("odo").innerHTML= ans;
+                                                        });
+                                                    }
+                                                    </script>
                                                     <tr>
                                                         <th scope="row">#1923</th>
                                                         <td>Lenovo IdeaPad 3 15.6" Laptop - Sand</td>
@@ -64,7 +81,6 @@
                                                         <td>Paid</td>
                                                         <td class="status"><span class="style1">Delivered</span></td>
                                                         <td>$56.00</td>
-                                                        <td class="action"><span class="details">...</span></td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">#1923</th>

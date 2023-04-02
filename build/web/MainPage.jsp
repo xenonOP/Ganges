@@ -97,14 +97,19 @@
                                         %>
                                         <div class="item">
                                             <div class="iconbox home2_style">
-                                                <div class="icon"><img src="<%=catphoto%>" alt="Explore Popular Brand"></div>
+                                                <div class="icon"><img src="<%=catphoto%>" alt="Explore Popular Brand" onclick="dirct('<%=catname%>')"></div>
                                                 <div class="details"><h5 class="title"><%=catname%></h5></div>
                                             </div>
                                             </a></div>
                                             <%
                            }
                                             %>
-
+                                            <script>
+                                                function dirct(car)
+                                                {
+                                                window.location.href="SearchResults.jsp?catname="+car;
+                                                }
+                                                                                    </script>
                                     </div>
                                 </div>
                             </div>

@@ -21,8 +21,7 @@ public class Order extends HttpServlet
        String username= request.getParameter("user");
         System.out.println(username);
        try{
-       String ord = new RDBMStoJSON().generateJSON("select * from ganges.carttable INNER JOIN ganges.product ON carttable.prdid=product.productid where carttable.username=\'"+username+"\' ");
-
+       String ord = new RDBMStoJSON().generateJSON("select * from ganges.ordertable INNER JOIN ganges.orderdetail ON ordertable.orderid=orderdetail.orderid where ordertable.username=\'"+username+"\' ");
            out.println(ord);
            System.out.println(ord);
        }
