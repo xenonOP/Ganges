@@ -182,7 +182,7 @@
                                             function hel()
                                             {
                                                 let user = '<%=user%>';
-                                                fetch(`Order?user=${user}`).then(data => data.json()).then(resp => {
+                                                fetch(`Checkout?user=${user}`).then(data => data.json()).then(resp => {
                                                     let arr = resp.ans;
                                                     let ans = "";
                                                     for (let i = 0; i < arr.length; i++)

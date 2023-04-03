@@ -536,8 +536,8 @@
                     <ul>
                         <li><a href="LoginPage.jsp"><span class="title">User Accounts</span></a>
                             <ul>
-                                <li><a href="page-account-details.html"> User Account Details</a></li>
-                                <li><a href="page-account-order.html"> User Account Order</a></li>
+                                <li><a href="LoginPage.jsp"> User Account Details</a></li>
+                                <li><a href="Orders.jsp"> User Account Order</a></li>
                                 <li><a href="page-account-address.html"> User Account Address</a></li>
                                 <li><a href="page-account-wishlist.html"> User Account Wishlist</a></li>
                                 <li><a href="page-account-invoice.html"> User Account Invoice</a></li>

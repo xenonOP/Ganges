@@ -1,22 +1,25 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-//i=
-// */
-//
+////
 //package ssqqll;
+//import java.io.File;
 //import java.lang.System.*;
-///**
-// *
-// * @author hp
-// */
+//import java.util.Properties;
+//import javax.mail.Authenticator;
+//import javax.mail.Message;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeBodyPart;
+//import javax.mail.internet.MimeMessage;
+//import javax.mail.internet.MimeMultipart;
+//
 //public class tst {
 //    public static void main(String[] args) {
 //		
 //		System.out.println("preparing to send message ...");
 //		String message = "Hello , Dear, this is message for security check . ";
 //		String subject = "CodersArea : Confirmation";
-//		String to = "learncodewithdurgesh@gmail.com";
+//		String to = "nirbhay.sharmad@gmail.com";
 //		String from = "techsoftindia2018@gmail.com";
 //		
 ////		sendEmail(message,subject,to,from);
@@ -45,7 +48,7 @@
 //		Session session=Session.getInstance(properties, new Authenticator() {
 //			@Override
 //			protected PasswordAuthentication getPasswordAuthentication() {				
-//				return new PasswordAuthentication("techsoftindia2018@gmail.com", "*******");
+//				return new PasswordAuthentication("kanishrajput123@gmail.com", "dhsvneypxbcjhgvu");
 //			}
 //			
 //			
@@ -72,7 +75,7 @@
 //		//attachement..
 //		
 //		//file path
-//		String path="images/upi.png";
+//		String path="https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80";
 //		
 //		
 //		MimeMultipart mimeMultipart = new MimeMultipart();
@@ -114,12 +117,6 @@
 //		}catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//		
-//		
-//		
-//		
-//		
-//		
 //		
 //	
 //		System.out.println("Sent success...................");
